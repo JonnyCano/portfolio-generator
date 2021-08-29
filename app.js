@@ -68,3 +68,22 @@ false.writeFile('index.html', generatePage(name, github), err => {
 
     console.log('Portfolio complete! Check out index.html to see the output!');
 });
+
+// so this is an example of throwing an error from the MDN docs
+function getRectArea(width, height) {
+  if (isNaN(width) || isNaN(height)) {
+    throw 'Parameter is not a number!';
+  }
+}
+
+try {
+  getRectArea(3, 'A');
+} catch (e) {
+  console.error(e);
+  // expected output: "Parameter is not a number!"
+}
+// and these are error throw examples
+throw 'Error2'; // generates an exception with a string value
+throw 42;       // generates an exception with the value 42
+throw true;     // generates an exception with the value true
+throw new Error('Required');  // generates an error object with the message of Required
