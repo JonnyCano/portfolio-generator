@@ -135,10 +135,22 @@ promptUser()
     .then(portfolioData => {
         const pageHTML = generatePage(portfolioData);
 
-        fs.writeFile('./index.html', pageHTML, err => {
-            if (err) throw new Error(err);
-
+        // the path to the file is inside the dist folder in the root directory to where 'index.html' file will be created.
+        fs.writeFile('./dist/index.html', pageHTML, err => {
+            if (err) {
+                console.log(err);
+                return;
+            }
             console.log('Page created! Check out index.html in this directory to see it!');
+
+            // copy the style sheet after the html creation process is complete (ie user data)
+            fs.copyFile('./src/style.css', './dist/style.css', err => {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                console.log('Style sheet copied successfully!');
+            });
         });
     });
 
