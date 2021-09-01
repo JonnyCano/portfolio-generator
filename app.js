@@ -133,26 +133,42 @@ const promptProject = portfolioData => {
 promptUser()
     .then(promptProject)
     .then(portfolioData => {
-        const pageHTML = generatePage(portfolioData);
-
-        // the path to the file is inside the dist folder in the root directory to where 'index.html' file will be created.
-        fs.writeFile('./dist/index.html', pageHTML, err => {
-            if (err) {
-                console.log(err);
-                return;
-            }
-            console.log('Page created! Check out index.html in this directory to see it!');
-
-            // copy the style sheet after the html creation process is complete (ie user data)
-            fs.copyFile('./src/style.css', './dist/style.css', err => {
-                if (err) {
-                    console.log(err);
-                    return;
-                }
-                console.log('Style sheet copied successfully!');
-            });
-        });
+        // take the variable and consolidate the processes
+        return generatePage(portfolioData);
+    })
+    .then(pageHTML => {
+        return writeFile(pageHTML);
+    })
+    .then(writeFileResponse => {
+        console.log(writeFileResponse);
+        return copyFile();
+    })
+    .then(copyFileResponse => {
+        console.log(copyFileResponse);
+    })
+    .catch(err => {
+        console.log(err);
     });
+
+
+    //     // the path to the file is inside the dist folder in the root directory to where 'index.html' file will be created.
+    //     fs.writeFile('./dist/index.html', pageHTML, err => {
+    //         if (err) {
+    //             console.log(err);
+    //             return;
+    //         }
+    //         console.log('Page created! Check out index.html in this directory to see it!');
+
+    //         // copy the style sheet after the html creation process is complete (ie user data)
+    //         fs.copyFile('./src/style.css', './dist/style.css', err => {
+    //             if (err) {
+    //                 console.log(err);
+    //                 return;
+    //             }
+    //             console.log('Style sheet copied successfully!');
+    //         });
+    //     });
+    // });
 
 // the next two lines are a test of memory
 // var curDate = new Date(2021, 0, 26, 8, 14, 2, 0)
