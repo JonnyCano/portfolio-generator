@@ -51,6 +51,7 @@ const promptUser = () => {
     ]);
 };
 const promptProject = portfolioData => {
+    // If there's no 'projects' array create one
     if (!portfolioData.projects) {
         portfolioData.projects = [];
     }
@@ -58,7 +59,7 @@ const promptProject = portfolioData => {
     =================
     Add a New Project
     =================
-`);
+    `);
     return inquirer.prompt([
         {
             type: 'input',
@@ -125,21 +126,21 @@ const promptProject = portfolioData => {
         } else {
             return portfolioData;
         }
-    })
+    });
 };
 
-const pageHTML = generatePage(mockData);
-// promptUser()
-//     .then(promptProject)
-//     .then(portfolioData => {
-//         const pageHTML = generatePage(portfolioData);
+// const pageHTML = generatePage(mockData);
+promptUser()
+    .then(promptProject)
+    .then(portfolioData => {
+        const pageHTML = generatePage(portfolioData);
 
-        // fs.writeFile('./index.html', pageHTML, err => {
-        //   if (err) throw new Error(err);
+        fs.writeFile('./index.html', pageHTML, err => {
+            if (err) throw new Error(err);
 
-        //   console.log('Page created! Check out index.html in this directory to see it!');
-        // });
-    // });
+            console.log('Page created! Check out index.html in this directory to see it!');
+        });
+    });
 
 // the next two lines are a test of memory
 // var curDate = new Date(2021, 0, 26, 8, 14, 2, 0)
