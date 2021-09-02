@@ -1,0 +1,23 @@
+{
+  "name": "portfolio-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JonnyCano/portfolio-generator.git"
+  },
+  "author": "CanoCan, Inc",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JonnyCano/portfolio-generator/issues"
+  },
+  "homepage": "https://github.com/JonnyCano/portfolio-generator#readme",
+  "dependencies": {
+    "inquirer": "^8.1.2"
+  }
+}
